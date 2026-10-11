@@ -1,0 +1,42 @@
+{
+  "name": "@vicstack/secondary-storage",
+  "version": "0.1.0",
+  "description": "Redis-backed implementation of better-auth's secondaryStorage interface.",
+  "license": "MIT",
+  "author": "Victoriano <fvictoriano.dev@gmail.com>",
+  "keywords": ["redis", "better-auth", "auth", "secondary-storage"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FranciscoAVD/secondary-storage.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FranciscoAVD/secondary-storage/issues"
+  },
+  "homepage": "https://github.com/FranciscoAVD/secondary-storage#readme",
+  "type": "module",
+  "module": "./dist/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json && bun build ./src/index.ts --outdir ./dist --target node --format esm --external '@vicstack/*'",
+    "test": "bun test",
+    "prepublishOnly": "bun run test && bun run build"
+  },
+  "dependencies": {
+    "@vicstack/try-catch": "^0.1.1"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5"
+  }
+}
